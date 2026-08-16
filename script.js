@@ -44,8 +44,6 @@ function startGame() {
 
 
 
-
-
 function playGame() {
 
 }
