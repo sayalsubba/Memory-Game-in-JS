@@ -23,6 +23,7 @@ let secondCard = null;
 let lockCard = false;
 
 function startGame() {
+    let matchedPair = 0;
 
     let mainPrt = document.getElementById("mainArr");
     mainPrt.innerHTML = "";
@@ -39,17 +40,19 @@ function startGame() {
         const displayArr = document.createElement("div");
         displayArr.innerHTML = "❓";
         mainPrt.appendChild(displayArr);
-       setTimeout(()=>{
-            displayArr.innerHTML = displayArr.dataset.value;
 
-       },1000)
         displayArr.dataset.value = value;
+
 
         displayArr.addEventListener("click", function showData(event) {
             if (lockCard) {
                 return;
+            }
+            if (event.target.classList.contains("matched")) {
+                return;
 
             }
+
             if (firstCard === null) {
                 firstCard = event.target;
                 firstCard.innerHTML = firstCard.dataset.value;
@@ -60,10 +63,34 @@ function startGame() {
                 secondCard.innerHTML = secondCard.dataset.value;
                 console.log(secondCard.dataset.value);
                 lockCard = true;
-            }
-        
+                if (firstCard.dataset.value === secondCard.dataset.value) {
+                    firstCard.classList.add("matched");
+                    secondCard.classList.add("matched");
+                    firstCard = null;
+                    secondCard = null;
+                    lockCard = false;
+                    matchedPair++;
+                    if (matchedPair === 8) {
+                        console.log("You Won!!!");
+                    }
 
+                }
+                else if (firstCard.dataset.value !== secondCard.dataset.value) {
+                    setTimeout(() => {
+                        let unknown = "❓";
+                        firstCard.innerHTML = unknown;
+                        secondCard.innerHTML = unknown;
+                        firstCard = null;
+                        secondCard = null;
+                        lockCard = false;
+                    }, 1000)
+                }
+
+            }
+            console.log(matchedPair);
         });
+
+
     });
 };
 
