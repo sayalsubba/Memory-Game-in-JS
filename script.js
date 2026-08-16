@@ -23,8 +23,9 @@ let secondCard = null;
 let lockCard = false;
 
 function startGame() {
+    let btn = document.getElementById("btn");
+    btn.style.display = "none";
     let matchedPair = 0;
-
     let mainPrt = document.getElementById("mainArr");
     mainPrt.innerHTML = "";
 
@@ -71,7 +72,13 @@ function startGame() {
                     lockCard = false;
                     matchedPair++;
                     if (matchedPair === 8) {
-                        console.log("You Won!!!");
+                        const wonDisplay = document.createElement("h1");
+                        wonDisplay.innerHTML = "You Have Won!!!";
+                        wonDisplay.classList.add("wondisplayClass")
+                        mainPrt.appendChild(wonDisplay);
+                        btn.style.display = "block";
+                      
+
                     }
 
                 }
