@@ -34,6 +34,8 @@ margin-left: 125px;
     display: grid;
   text-align: center;
     grid-template-columns: repeat(4,1fr);
+    cursor: pointer;
+    font-size: 20px;
 }
 .mainArrClass div{
 

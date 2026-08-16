@@ -20,7 +20,7 @@ const arr = [
 
 let firstCard = null;
 let secondCard = null;
-let score = 0;
+let lockCard = false;
 
 function startGame() {
 
@@ -37,9 +37,34 @@ function startGame() {
     arr.forEach((value) => {
         text = value;
         const displayArr = document.createElement("div");
-        displayArr.innerHTML = text;
+        displayArr.innerHTML = "❓";
         mainPrt.appendChild(displayArr);
-    })
+       setTimeout(()=>{
+            displayArr.innerHTML = displayArr.dataset.value;
+
+       },1000)
+        displayArr.dataset.value = value;
+
+        displayArr.addEventListener("click", function showData(event) {
+            if (lockCard) {
+                return;
+
+            }
+            if (firstCard === null) {
+                firstCard = event.target;
+                firstCard.innerHTML = firstCard.dataset.value;
+                console.log(firstCard.dataset.value);
+            }
+            else if (secondCard === null) {
+                secondCard = event.target;
+                secondCard.innerHTML = secondCard.dataset.value;
+                console.log(secondCard.dataset.value);
+                lockCard = true;
+            }
+        
+
+        });
+    });
 };
 
 
