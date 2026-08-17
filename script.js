@@ -76,7 +76,7 @@ function startGame() {
                         wonDisplay.innerHTML = "You Have Won!!!";
                         wonDisplay.classList.add("wondisplayClass")
                         mainPrt.appendChild(wonDisplay);
-                        btn.style.display = "block";
+                        btn.style.display = "flex";
                       
 
                     }
